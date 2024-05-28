@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const xml2js = require('xml2js');
-const admin = require("firebase-admin");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
