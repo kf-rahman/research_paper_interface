@@ -5,6 +5,11 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(cors()); // This will enable CORS for all routes
+
+// The rest of your server code
+
+
 // Enable CORS for requests from your React application
 app.use(cors());
 
