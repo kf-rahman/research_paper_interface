@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
 
-var serviceAccount = require("/Users/kazirahman/PycharmProjects/research/research-papers-303ff-firebase-adminsdk-fbsp4-a6f9222821.json");
+var serviceAccount = require("research-papers-303ff-firebase-adminsdk-fbsp4-a6f9222821.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
