@@ -20,11 +20,9 @@ admin.initializeApp({
 
 
 const db = admin.firestore();
-app.get('/', (req, res) => {
-  res.send('Welcome to my arXiv API server!');
-});
 
-app.get('/papers', async (req, res) => {
+
+app.get('/', async (req, res) => {
   try {
     const url = 'http://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=5';
     const response = await axios.get(url);
