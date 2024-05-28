@@ -20,6 +20,9 @@ admin.initializeApp({
 
 
 const db = admin.firestore();
+app.get('/', (req, res) => {
+  res.send('Welcome to my arXiv API server!');
+});
 
 app.get('/papers', async (req, res) => {
   try {
