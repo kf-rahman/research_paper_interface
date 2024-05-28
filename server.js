@@ -10,11 +10,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json()); // Middleware to parse JSON bodies
 
-var serviceAccount = require("../config/research-papers-303ff-firebase-adminsdk-fbsp4-a6f9222821.json");
+const admin = require('firebase-admin');
+
+// Decode the Base64 string to an object
+const serviceAccount = JSON.parse(Buffer.from(process.env.FIREBASE_ADMIN_SDK, 'base64').toString('ascii'));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
+
 
 const db = admin.firestore();
 
