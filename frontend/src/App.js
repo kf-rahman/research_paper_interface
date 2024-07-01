@@ -11,22 +11,23 @@ function App() {
 
   const fetchPapers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/papers');
-      console.log('Fetched papers:', response.data); // Log the fetched data
-      setPapers(response.data);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/papers`);
+        console.log('Fetched papers:', response.data); // Log the fetched data
+        setPapers(response.data);
     } catch (error) {
-      console.error('Error fetching papers:', error);
+        console.error('Error fetching papers:', error);
     }
-  };
+};
 
-  const markAsRead = async (id) => {
+const markAsRead = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/papers/${id}/read`);
-      fetchPapers();
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/papers/${id}/read`);
+        fetchPapers();
     } catch (error) {
-      console.error('Error marking paper as read:', error);
+        console.error('Error marking paper as read:', error);
     }
-  };
+};
+
 
   return (
     <div className="App">
