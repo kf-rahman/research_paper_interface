@@ -3,10 +3,9 @@ from flask_cors import CORS
 from apscheduler.schedulers.background import BackgroundScheduler
 import requests
 import xml.etree.ElementTree as ET
-import firebase_admin
-from firebase_admin import credentials, firestore
+
 import datetime
-import os
+
 import logging
 
 # Configure logging
@@ -14,11 +13,25 @@ logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 CORS(app)
+import firebase_admin
+from firebase_admin import credentials, firestore
+import os
+import json
 
-# Initialize Firebase
-cred = credentials.Certificate("research-papers-303ff-firebase-adminsdk-fbsp4-ece2388cab.json")
+# Retrieve the JSON string from environment variables
+firebase_credentials_json = os.getenv('FIREBASE_CREDENTIALS')
+
+# Convert JSON string back to a dictionary
+cred_dict = json.loads(firebase_credentials_json)
+
+# Create a credential object
+cred = credentials.Certificate(cred_dict)
+
+# Initialize Firebase with the credentials
 firebase_admin.initialize_app(cred)
+
 db = firestore.client()
+
 
 def fetch_papers():
     # Construct the query URL for the arXiv API
